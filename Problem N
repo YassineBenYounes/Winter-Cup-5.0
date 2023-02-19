@@ -1,0 +1,125 @@
+/*
+ID: Yassine BenYounes
+TASK: guard
+LANG: C++
+*/
+#include<bits/stdc++.h>
+ 
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef double db;
+/*#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+#define pbds tree<int, null_type, less<int>,rb_tree_tag, tree_order_statistics_node_update>
+using namespace __gnu_pbds;*/
+ll gcd(ll a , ll b) {return b ? gcd(b , a % b) : a ;} // greatest common divisor (PGCD)
+ll lcm(ll a , ll b) {return (a * b) / gcd(a , b);} // least common multiple (PPCM)
+ll modd(ll x, ll n){while(x < 0){x += n;}return (x % n);} // modulo for negative numbers
+int dx[8] = {0, -1, 0, 1, 1, 1, -1, -1};
+int dy[8] = {-1, 0, 1, 0, -1, 1, -1, 1};
+#define endl "\n"
+#define ss second
+#define ff first
+#define all(x) (x).begin() , (x).end()
+#define pb push_back
+#define vi vector<int>
+#define vii vector<pair<int,int>>
+#define vl vector<ll>
+#define vll vector<pair<ll,ll>>
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define pdd  pair<double,double>
+#define vdd  vector<pdd>
+#define speed ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+
+vi primes;
+
+const int ppppp = 1e6+9;
+
+bool prime[ppppp];
+
+void sieve(int n){
+    memset(prime, 1, sizeof prime);
+    prime[1] = 0;
+    for(int i = 2; i < n;i++){
+        if(!prime[i])continue;
+        primes.pb(i);
+        for(int j = 2*i;j < n;j+=i){
+            prime[j] = 0;
+        }
+    }
+}
+
+vi factors(int n){
+    vi res;
+    for(int i = 0; i < primes.size() && primes[i]*primes[i] <= n;i++){
+        if(n % primes[i] == 0)res.pb(primes[i]);
+        while(n % primes[i] == 0){
+            n /= primes[i];
+        }
+    }
+    if(n > 1)res.pb(n);
+    return res;
+}
+
+void init(){
+    #ifndef ONLINE_JUDGE
+ 
+freopen("input.txt", "r", stdin);
+ 
+freopen("output.txt", "w", stdout);
+ 
+#endif // ONLINE_JUDGE
+}
+
+const int mx = 55;
+const ll mod = 998244353;
+const ll inf = 1e15;
+
+int grid[mx][mx];
+
+int n, m;
+
+bool out_of_borders(int x, int y){
+    return (x < 0 || x >= n || y < 0 || y >= m);
+}
+
+void run_case(){
+    cin >> n >> m;
+    int i, j;cin >> i >> j;i--;j--;
+    for(int i = 0; i < n;i++){
+        for(int j = 0;j < m;j++){
+            cin >> grid[i][j];
+        }
+    }
+    //cout << i << " " << j << endl;
+    int c = 1e9;
+    for(int d = 0;d < 4;d++){
+        int x = i + dx[d], y = j + dy[d];
+        if(out_of_borders(x, y))continue;
+        c = min(c, grid[x][y]);
+    }
+    c = max(c, grid[i][j]);
+    cout << c+1 << endl;
+}
+
+int main(){
+    //ofstream fout ("guard.out");
+    //ifstream fin ("guard.in");
+    init();
+    speed;
+    //sieve(mx);
+    int t;
+    //cin >> t;
+    t = 1;
+    while(t--){
+        run_case();
+    }
+}
+
+/*
+    NEVER GIVE UP!
+    DOING SMTHNG IS BETTER THAN DOING NTHNG!!!
+*/
