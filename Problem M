@@ -4,7 +4,7 @@ TASK: guard
 LANG: C++
 */
 #include<bits/stdc++.h>
- 
+
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
@@ -66,11 +66,11 @@ vi factors(int n){
 
 void init(){
     #ifndef ONLINE_JUDGE
- 
+
 freopen("input.txt", "r", stdin);
- 
+
 freopen("output.txt", "w", stdout);
- 
+
 #endif // ONLINE_JUDGE
 }
 
@@ -97,7 +97,7 @@ void run_case(){
         cout << se.size() << endl;
         return;
     }
-    if(se.size() == 1 && n == 1){
+    if(se.size() <= 1 && n == 1){
         cout << 1 << endl;return;
     }
     vii v;
